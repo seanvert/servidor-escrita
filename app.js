@@ -5,20 +5,20 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-var indexRouter = require('./rotas/index');
-var usersRouter = require('./rotas/users');
-var textsRouter = require('./rotas/texts');
-var authRouter = require('./rotas/auth');
-var exercisesRouter = require('./rotas/exercises');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var textsRouter = require('./routes/texts');
+var authRouter = require('./routes/auth');
+var exercisesRouter = require('./routes/exercises');
 
 
 const options = {
 	useNewUrlParser: true,
-  autoIndex: false, // Don't build indexes
-  // If not connected, return errors immediately rather than waiting for reconnect
-  connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
-  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-  family: 4 // Use IPv4, skip trying IPv6
+	autoIndex: false, // Don't build indexes
+	// If not connected, return errors immediately rather than waiting for reconnect
+	connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+	socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+	family: 4 // Use IPv4, skip trying IPv6
 };
 
 const DB_URL = 'mongodb://escritaApp:teste@localhost:27017/escrita';
@@ -45,11 +45,13 @@ const app = express();
 const port = 8000;
 
 app.use(session({
+	// TODO: change secret key
 	secret: 'mysecret that I will change later',
 	resave: false,
 	saveUninitialized: false,
+	// TODO: insert sessions into database
 }));
-// TODO: não deixar isso sem trocar
+
 
 app.use(cors({
     origin: "*",
