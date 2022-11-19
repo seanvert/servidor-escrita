@@ -4,7 +4,7 @@ const Text = require('../models/texts');
 const User = require('../models/users');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+	res.send('respond with a resource');
 });
 
 router.get('/new', (req, res, next) => {
@@ -24,15 +24,15 @@ router.post('/', (req, res, next) => {
 					usuarioEncontrado.save((err, usuario) => {
 						console.log("usuario:");
 						console.log(usuario);
-					})
+					});
 				} else {
 					console.log(err);
 				}
-			})
+			});
 		} else {
 			console.log(err);
 		}
-	})
+	});
 
 	res.redirect('http://192.168.0.100:3000/');
 });
