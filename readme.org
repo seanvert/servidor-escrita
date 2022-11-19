@@ -1,0 +1,12 @@
+* coisas que faltam
+** mexer no cookie de sessão
+** adicionar os testes das rotas
+*** adicionar um "health check" na api
+** dashboard
+*** ver se tem algum pacote no npm
+
+
+* antes do deploy
+** não posso esquecer de trocar o wildcard do cors
+[[file:app.js::origin: "*",][cors]]
+
