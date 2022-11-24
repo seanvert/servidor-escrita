@@ -13,6 +13,8 @@ var exercisesRouter = require('./routes/exercises');
 
 
 const options = {
+	user: "root",
+	pass: "example",
 	useNewUrlParser: true,
 	autoIndex: false, // Don't build indexes
 	// If not connected, return errors immediately rather than waiting for reconnect
@@ -21,10 +23,12 @@ const options = {
 	family: 4 // Use IPv4, skip trying IPv6
 };
 
-const DB_URL = 'mongodb://escritaApp:teste@localhost:27017/escrita';
+const DB_URL = 'mongodb://localhost:27017';
+
 
 async function dbConnect() {
 	await mongoose.connect(DB_URL, options);
+	mongoose.connection.useDb("escrita");
 }
 dbConnect();
 
