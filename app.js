@@ -48,6 +48,19 @@ const serverStatus = () => {
 const app = express();
 const port = 8000;
 
+app.use(cors({
+    origin: ["http://192.168.0.100:3000", "http://192.168.0.101:3000"],
+	allowedHeaders: ['Content-Type', 'Authorization',
+					 'access-control-allow-credentials',
+					'upgrade-insecure-requests'],
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	preflightContinue: "false",
+	credentials: true,
+}));
+
+app.use(cookieParser('mysecret that I will change later'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(session({
 	// TODO: change secret key
 	secret: 'mysecret that I will change later',
@@ -57,19 +70,7 @@ app.use(session({
 }));
 
 
-app.use(cors({
-    origin: "*",
-	allowedHeaders: ['Content-Type', 'Authorization',
-					 'Access-Control-Allow-Origin',
-					 'Access-Control-Allow-Methods',
-					'Upgrade-Insecure-Requests'],
-	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-	credentials: "true",
-}));
 
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
