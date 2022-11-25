@@ -2,12 +2,11 @@ var express = require('express');
 var router = express.Router();
 const Exercise = require('../models/exercises');
 const User = require('../models/users');
-const bcrypt = require('bcrypt');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
-	console.log(req.body);
-	res.send('lista de exercícios');
+	const filter = {};
+	const exercises = Exercise.find(filter);
+	res.send(exercises);
 });
 
 router.get('/new', (req, res, next) => {
@@ -15,10 +14,23 @@ router.get('/new', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-	console.log(req.body);
+	Exercise.create({
+		name: req.body.name,
+		contents: req.body.contents,
+		creator: req.user._id,
+		defaultConfigs: {
+			time: 10,
+		}
+	}, function(err, next) {
+		if (!err) {
+			res.redirect(process.env.URL_HOME);
+		} else {
+			console.log(err);
+		}
+	});
 	// TODO: checa se o usuário existe
 	// TODO: redirecionar para outra página
-	res.send("rota post novo exercício");
+
 });
 
 router.get('/:id', (req, res, next) => {
