@@ -94,17 +94,12 @@ function insertActivityStack (user) {
 router.post('/', (req, res, next) => {
 	User.findById(req.user._id, (err, usuarioEncontrado) => {
 		if(!err) {
-
 			Text.create({
 				contents: req.body.conteudo,
 			}, function(err, text) {
-				// console.log("texto:");
-				// console.log(text);
 				if(!err) {
 					usuarioEncontrado.texts.push(text.id);
 					usuarioEncontrado.save((err, usuario) => {
-						// console.log("usuario:");
-						// console.log(usuario);
 					});
 				} else {
 					console.log(err);
@@ -115,7 +110,7 @@ router.post('/', (req, res, next) => {
 		}
 	});
 
-	res.redirect('http://192.168.0.100:3000/');
+	res.redirect(process.env.URL_HOME);
 });
 
 router.get('/:id', (req, res, next) => {

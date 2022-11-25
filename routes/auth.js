@@ -11,31 +11,30 @@ passport.deserializeUser(User.deserializeUser());
 
 const myLogger = function (req, res, next) {
 	// console.log(res);
-  next();
+	next();
 };
-
 
 
 router.use(myLogger);
 router.post(
-  "/login",
-  passport.authenticate("local", {
-      failureRedirect: "http://192.168.0.100:3000/",
-	  // successRedirect: "http://192.168.0.100:3000/",
-      failureMessage: true,
-  }),
+	"/login",
+	passport.authenticate("local", {
+		failureRedirect: process.env.URL_HOME,
+		// successRedirect: "http://192.168.0.100:3000/",
+		failureMessage: true,
+	}),
 	function (req, res, next) {
 		console.log(req.user);
 		req.login(req.user, err =>
-				{
-					if (!err) {
-						res.json({ user: req.user });
-					} else {
-						console.log(err);
-					}
-					next();
-				});
-  }
+			{
+				if (!err) {
+					res.send({ user: req.user });
+				} else {
+					console.log(err);
+				}
+				next();
+			});
+	}
 );
 
 router.get("/", (req, res, next) => {
@@ -47,24 +46,24 @@ router.get("/", (req, res, next) => {
 router.get("/logout", (req, res, next) => {
 	// req.session.destroy();
 	req.logout((err) => {
-      if (!err) {
-      res.redirect("http://192.168.0.100:3000/");
-    } else {
-      console.log(err);
-    }
-  });
+		if (!err) {
+			res.redirect(process.env.URL_HOME);
+		} else {
+			console.log(err);
+		}
+	});
 });
 
 router.post("/signup", (req, res) => {
-  User.register(new User(req.body), req.body.password, (err, user) => {
-    if (!err) {
-      passport.authenticate("local")(req, res, () => {
-		  res.redirect("http://192.168.0.100:3000/");
-      });
-    } else {
-      console.log(err);
-    }
-  });
+	User.register(new User(req.body), req.body.password, (err, user) => {
+		if (!err) {
+			passport.authenticate("local")(req, res, () => {
+				res.redirect(process.env.URL_HOME);
+			});
+		} else {
+			console.log(err);
+		}
+	});
 });
 
 module.exports = router;
