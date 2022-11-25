@@ -1,12 +1,22 @@
-* coisas que faltam
+* servidor
 ** mexer no cookie de sessão
+*** ver como remover o cookie no logout
 ** adicionar os testes das rotas
 *** adicionar um "health check" na api
 ** dashboard
 *** ver se tem algum pacote no npm
-
+** likes no perfil do usuário
+*** organizar o map
+** routes trilhas
+*** povoar a db
+** middleware de autenticação
+** middleware de erros
+** routes quotes
+*** povoar a api
+** definir o que precisa de autenticação
+** separar as funções da stack de atividade do usuário
+*** testar as funções
 
 * antes do deploy
-** não posso esquecer de trocar o wildcard do cors
-[[file:app.js::origin: "*",][cors]]
-
+** trocar o segredo da sessão
+** trocar o user e pass do mongoose
