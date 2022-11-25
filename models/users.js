@@ -29,6 +29,10 @@ const User = new Schema({
 				ref: "Exercise",
 			},
 			config: {
+				completed: {
+					type: Boolean,
+					default: false,
+				},
 				time: Number,
 				default: Boolean,
 			},
@@ -40,9 +44,10 @@ const User = new Schema({
 		dateLastActive: { type: Date, default: Date.now },
 		activityArray: {
 			type: Array,
-			default: new Array(semester).fill(0),
+			default: new Array(semester).fill(0)
 		},
 	},
+	quote_likes: Map
 });
 
 // TODO: check how to make methods for models
