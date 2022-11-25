@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/users');
-const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -29,7 +28,12 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-	res.send('rota update dos usuários');
+	const updatedUser = req.body.user;
+	const filter = {
+		_id: req.user._id
+	};
+	let newUser = User.findOneAndUpdate(filter, updatedConfigs);
+	res.json(newUser);
 });
 
 router.delete('/:id', (req, res, next) => {
