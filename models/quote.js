@@ -1,6 +1,5 @@
-import { Schema } from "mongoose";
 const mongoose = require('mongoose');
-
+const { Schema } = mongoose;
 const Quote = new Schema({
 	quote: String,
 	source: {

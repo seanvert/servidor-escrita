@@ -1,5 +1,5 @@
-import { Schema } from "mongoose";
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
 const Work = new Schema({
 	name: String,

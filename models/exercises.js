@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const User = require('../models/users');
 
 const exerciseSchema = new Schema({
-	name:  String, 
+	name: String, 
 	contents: String,
 	creation_date: { type: Date, default: Date.now },
 	creator: {
