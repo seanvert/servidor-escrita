@@ -1,25 +1,22 @@
 * servidor
-** mexer no cookie de sessão
-*** ver como remover o cookie no logout
+** eslint
 ** adicionar os testes das rotas
 *** adicionar um "health check" na api
 ** dashboard
 *** ver se tem algum pacote no npm
 ** likes no perfil do usuário
 *** organizar o map
-** middleware de autenticação
 ** middleware de erros
-** routes quotes
-*** povoar a api
-*** consertar o bug das quotes estarem sem author e source
-
-** definir as rotas que precisam de autenticação
 ** separar as funções da stack de atividade do usuário
 *** testar as funções
 ** atualizar a data do último login na autenticação
-** signup user
-*** criar as configurações para cada exercício durante a criação do usuario
-
 * antes do deploy
 ** trocar o segredo da sessão
 ** trocar o user e pass do mongoose
+* mvp
+** middleware de autenticação
+** routes quotes
+*** povoar a api
+**** consertar o bug das quotes estarem sem source (author/work)
+** definir as rotas que precisam de autenticação
+** definir a lógica dos exercícios
