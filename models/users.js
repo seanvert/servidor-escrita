@@ -34,7 +34,7 @@ const User = new Schema({
 					default: false,
 				},
 				time: Number,
-				default: Boolean,
+				defaultExercise: Boolean,
 			},
 		},
 	],
