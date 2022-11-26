@@ -1,10 +1,9 @@
-import { Schema } from "mongoose";
 const mongoose = require('mongoose');
-
+const { Schema } = mongoose;
 const Author = new Schema({
 	name: String,
 	wikipediaLink: String,
-	portrait: Blob,
+	portrait: Buffer,
 });
 
 
