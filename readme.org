@@ -7,15 +7,18 @@
 *** ver se tem algum pacote no npm
 ** likes no perfil do usuário
 *** organizar o map
-** routes trilhas
-*** povoar a db
 ** middleware de autenticação
 ** middleware de erros
 ** routes quotes
 *** povoar a api
-** definir o que precisa de autenticação
+*** consertar o bug das quotes estarem sem author e source
+
+** definir as rotas que precisam de autenticação
 ** separar as funções da stack de atividade do usuário
 *** testar as funções
+** atualizar a data do último login na autenticação
+** signup user
+*** criar as configurações para cada exercício durante a criação do usuario
 
 * antes do deploy
 ** trocar o segredo da sessão
