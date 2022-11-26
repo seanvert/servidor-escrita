@@ -2,6 +2,7 @@ var express = require("express");
 var passport = require("passport");
 var LocalStrategy = require("passport-local");
 const User = require("../models/users");
+const Exercise = require('../models/exercises');
 var router = express.Router();
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -58,8 +59,32 @@ router.get("/logout", (req, res, next) => {
 });
 
 router.post("/signup", (req, res) => {
-	User.register(new User(req.body), req.body.password, (err, user) => {
+	// make default configs array of current exercises
+	// before creating user
+	var defaultConfigs = [];
+	// lookup exercises
+	Exercise.find({}, (err, exercises) => {
+		// loop through default configs
 		if (!err) {
+			exercises.map((exercise, index) => {
+				defaultConfigs[index] = {
+					exercise: exercise._id,
+					config: {
+						completed: false,
+						time: exercise.defaultConfigs.time,
+						defaultExercise: exercise.defaultConfigs.defaultExercise
+					}
+				};
+			});
+		}
+	});
+	// insert default configs in the user config array
+	// user registering logic
+	var newUser = new User(req.body);
+	newUser.configs = defaultConfigs;
+	User.register(newUser, req.body.password, (err, user) => {
+		if (!err) {
+			// saves user
 			passport.authenticate("local")(req, res, () => {
 				res.redirect(process.env.URL_HOME);
 			});
