@@ -5,8 +5,12 @@ const User = require('../models/users');
 
 router.get('/', function(req, res, next) {
 	const filter = {};
-	const exercises = Exercise.find(filter);
-	res.send(exercises);
+	var json = {};
+	Exercise.find(filter, function(err, exercises) {
+		json.response = exercises;
+		console.log(json);
+		res.json(json);
+	});
 });
 
 router.get('/new', (req, res, next) => {
