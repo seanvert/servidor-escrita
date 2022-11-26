@@ -12,6 +12,10 @@ const exerciseSchema = new Schema({
 	},
 	defaultConfigs: {
 		time: Number,
+		defaultExercise: {
+			type: Boolean,
+			default: false
+		}
 	}
 });
 
