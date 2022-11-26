@@ -5,8 +5,16 @@ const Quote = require('../models/quote');
 
 /* GET quotes listing. */
 router.get('/', function(req, res, next) {
-	console.log(req.body);
-	res.send('respond with a resource');
+	const filter = {}
+	var json = {}
+	Quote.find(filter, function(err, quotes) {
+		if (!err) {
+			json.response = quotes[0];
+			res.json(json);
+		} else {
+			console.log(err);
+		}
+	});
 });
 
 router.get('/new', (req, res, next) => {
