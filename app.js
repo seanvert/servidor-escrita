@@ -5,11 +5,13 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const populateDb= require("./populateDb");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var textsRouter = require('./routes/texts');
 var authRouter = require('./routes/auth');
 var exercisesRouter = require('./routes/exercises');
+var quotesRouter = require('./routes/quotes');
 
 
 const options = {
@@ -17,7 +19,6 @@ const options = {
 	pass: "example",
 	useNewUrlParser: true,
 	autoIndex: false, // Don't build indexes
-	// If not connected, return errors immediately rather than waiting for reconnect
 	connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
 	socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 	family: 4 // Use IPv4, skip trying IPv6
@@ -32,11 +33,9 @@ async function dbConnect() {
 }
 dbConnect();
 
-// TODO ver este warning
-// liente-escrita-servidor-escrita-1  | Warning: connect.session() MemoryStore is not
-// cliente-escrita-servidor-escrita-1  | designed for a production environment, as it will leak
-// cliente-escrita-servidor-escrita-1  | memory, and will not scale past a single process.
-
+// if (true) {
+// 	populateDb();
+// }
 
 const serverStatus = () => {
 	return {
@@ -70,7 +69,6 @@ app.use(session({
 }));
 
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', indexRouter);
@@ -78,6 +76,7 @@ app.use('/users', usersRouter);
 app.use('/exercises', exercisesRouter);
 app.use('/auth', authRouter);
 app.use('/texts', textsRouter);
-
+app.use('/texts', textsRouter);
+app.use('/quotes', quotesRouter);
 module.exports = app;
 
