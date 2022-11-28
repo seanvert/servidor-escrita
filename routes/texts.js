@@ -28,8 +28,7 @@ function incrementUserActivity(user) {
 	if(Boolean(user.activity.activityArray[index])) {
 		user.activity.activityArray[index] += 1;
 	} else {
-		user.activity.activityArray[index] = 0;
-		user.activity.activityArray[index] += 1;
+		user.activity.activityArray[index] = 1;
 	}
 	// TODO: save user
 };
