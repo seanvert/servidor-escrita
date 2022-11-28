@@ -49,7 +49,7 @@ router.get("/logout", (req, res, next) => {
 	req.logout((err) => {
 		if (!err) {
 			res.clearCookie('connection.sid', { path: '/'})
-				.redirect(process.env.URL_HOME);;
+				.status(200).redirect(process.env.URL_HOME);
 			// TODO: destruir session cookies
 			// res
 		} else {
