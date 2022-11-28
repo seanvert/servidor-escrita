@@ -20,3 +20,6 @@
 **** consertar o bug das quotes estarem sem source (author/work)
 ** definir as rotas que precisam de autenticação
 ** definir a lógica dos exercícios
+* bugs
+** usuário não está logado depois do cadastro
+
