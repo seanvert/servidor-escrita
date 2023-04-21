@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const Quote = require('../models/quote');
+const isLoggedIn = require('../middleware/isLoggedIn');
 
 
 /* GET quotes listing. */
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
 	const filter = {}
 	var json = {}
 	Quote.find(filter, function(err, quotes) {
@@ -28,7 +29,7 @@ router.post('/', (req, res, next) => {
 	res.send("rota post nova quote");
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => {
 	res.send('rota get id mostra quote');
 });
 
