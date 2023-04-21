@@ -5,7 +5,7 @@ const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const populateDb= require("./populateDb");
+const populateDb = require("./populateDb");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var textsRouter = require('./routes/texts');
@@ -24,7 +24,7 @@ const options = {
 	family: 4 // Use IPv4, skip trying IPv6
 };
 
-const DB_URL = 'mongodb://localhost:27017';
+const DB_URL = "mongodb://localhost:27017";
 
 
 async function dbConnect() {
@@ -62,6 +62,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({
 	// TODO: change secret key
+	// TODO: insert an environment variable here
 	secret: 'mysecret that I will change later',
 	resave: false,
 	saveUninitialized: false,
