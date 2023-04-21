@@ -14,12 +14,57 @@
 ** trocar o segredo da sessão
 ** trocar o user e pass do mongoose
 * mvp
-** middleware de autenticação
 ** routes quotes
 *** povoar a api
 **** consertar o bug das quotes estarem sem source (author/work)
-** definir as rotas que precisam de autenticação
 ** definir a lógica dos exercícios
+*** escrita automática
+só redirecionar o usuário para a tela de exercícios
+*** associação livre
+10 palavras aleatórias
+*** fluxo verbal
+**** começam com a letra x
+6 letras, 2 minutos cada
+**** palavras com sonoridade parecida
+4 palavras fáceis
+porto pá rua mato
+**** palavras com alguma semelhança
+não necessariamente de sentido
+5 palavras aleatórias
+
 * bugs
 ** usuário não está logado depois do cadastro
+* tratar os dados do corpus
+https://www.linguateca.pt/cetenfolha/index_info.html
+** separar as tags <ext>
+#+begin_src 
+id
+o número de ordem do extracto no corpus
+cad
+o caderno da Folha de São Paulo do qual o texto provêm (por ordem alfabética: Agrofolha, Brasil, Caderno Especial, Cotidiano, Dinheiro, Empregos, Esporte, Folha Ciência, Folhateen, Folhinha, Fovest, Ilustrada, Imóveis, Informática, Mais!, Mundo, Opinião, Revista Folha, TV Folha, Tudo, Turismo, Veículos)
+sec
+a classificação do texto, inspirada nas classificações do CETEMPúblico; os valores possíveis são: pol (política brasileira e internacional), des (desporto), eco (economia), clt (cultura), opi (opinião), agr (agricultura), vei (veículos), com (informática) e nd (não determinado). Alguns artigos pertencem a mais de uma categoria (marcados por exemplo como clt-soc).
+sem
+o semestre (os valores possíveis são 94a e 94b, respectivamente o primeiro e segundo semestre de 1994).
+#+end_src
+
+*** parse
+**** separa os elementos por id
+só incrementar as ids
+**** separa os elementos por classe gramatical
+*** pegar as tags <s>
+**** remover pontuação
+**** split nos tokens
+**** contar por radicais das palavras anotadas
+**** ordenar por contagem geral
+** organização dos dados
+*** palavra
+**** frequência
+**** frequência num caderno
+**** frequência numa classificação
+**** classificação
+** PRA FAZER ver o esquema mais simples pros dados
+*** separar palavras
+*** colocar contagem
+*** ordenar por frequência
 
