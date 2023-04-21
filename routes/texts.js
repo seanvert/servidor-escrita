@@ -1,26 +1,40 @@
+const isLoggedIn = require('../middleware/isLoggedIn');
 var express = require('express');
 var router = express.Router();
 const Text = require('../models/texts');
 const User = require('../models/users');
+var passport = require("passport");
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 const dayInMs = 1000 * 3600 * 24;
 const semester = 7 * 4 * 6;
 
+
 const myLogger = function (req, res, next) {
-	console.log(req);
+	// console.log(req);
   next();
 };
 
 router.use(myLogger);
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-	res.send('respond with a resource');
+router.get('/', isLoggedIn, function(req, res, next) {
+	console.log("req user id", req.user._id);
+	console.log("session", req.session);
+	const filter = {
+		owner: req.user._id,
+	};
+	var json = {};
+	Text.find(filter, function(err, texts) {
+		json.response = texts;
+		console.log(texts);
+		res.json(json);
+	});
 });
 
-router.get('/new', (req, res, next) => {
-	res.send('rota new formulário criar texto');
-});
+// router.get('/new', (req, res, next) => {
+// 	res.send('rota new formulário criar texto');
+// });
 
 function incrementUserActivity(user) {
 	// increments user activity at current index position
@@ -67,7 +81,7 @@ function resetActivityStack (user) {
 	user.activity.index = 0;
 	user.activity.activityArray = new Array(semester).fill(0);
 	// TODO: save user;
-}
+};
 
 function insertActivityStack (user) {
 	var now = Date.now();
@@ -88,17 +102,23 @@ function insertActivityStack (user) {
 
 	user.activity.dateLastActive = Date.now();
 	// TODO: save User
-}
+};
 
-router.post('/', (req, res, next) => {
+
+
+router.post('/', isLoggedIn, (req, res, next) => {
 	User.findById(req.user._id, (err, usuarioEncontrado) => {
 		if(!err) {
 			Text.create({
-				contents: req.body.conteudo,
+				owner: usuarioEncontrado._id,
+				contents: req.body.contents,
 			}, function(err, text) {
 				if(!err) {
 					usuarioEncontrado.texts.push(text.id);
 					usuarioEncontrado.save((err, usuario) => {
+						if (!err) {
+							console.log("usuario salvo", usuario.texts);
+						}
 					});
 				} else {
 					console.log(err);
@@ -112,11 +132,12 @@ router.post('/', (req, res, next) => {
 	res.redirect(process.env.URL_HOME);
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLoggedIn, (req, res, next) => {
 	Text.findById(req.params.id, (err, textoEncontrado) => {
 		if(!err) {
-			console.log(textoEncontrado);
-			console.log(textoEncontrado.toString());
+			console.log("--------------------");
+			// console.log(textoEncontrado);
+			// console.log(textoEncontrado.toString());
 		} else {
 			console.log(err);
 		}
@@ -124,17 +145,17 @@ router.get('/:id', (req, res, next) => {
 	res.send("textoEncontrado");
 });
 
-router.get('/:id/edit', (req, res, next) => {
-	res.send('rota edit formulário de editar perfil');
-});
+// router.get('/:id/edit', (req, res, next) => {
+// 	res.send('rota edit formulário de editar perfil');
+// });
 
-router.put('/:id', (req, res, next) => {
-	res.send('rota update dos textos');
-});
+// router.put('/:id', (req, res, next) => {
+// 	res.send('rota update dos textos');
+// });
 
-router.delete('/:id', (req, res, next) => {
-	res.send('rota delete dos textos');
-});
+// router.delete('/:id', (req, res, next) => {
+// 	res.send('rota delete dos textos');
+// });
 
 module.exports = router;
 
