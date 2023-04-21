@@ -7,15 +7,15 @@ const semester = 7 * 4 * 6;
 
 const User = new Schema({
 	name: String,
-	last_name: String,
+	lastName: String,
 	email: {
 		type: String,
 		unique: true,
 		required: true,
 		trim: true,
 	},
-	account_creation: { type: Date, default: Date.now },
-	last_login: { type: Date, default: Date.now },
+	accountCreation: { type: Date, default: Date.now },
+	lastLogin: { type: Date, default: Date.now },
 	texts: [
 		{
 			type: Schema.Types.ObjectId,
@@ -47,7 +47,7 @@ const User = new Schema({
 			default: new Array(semester).fill(0)
 		},
 	},
-	quote_likes: Map
+	quoteLikes: Map
 });
 
 // TODO: check how to make methods for models
