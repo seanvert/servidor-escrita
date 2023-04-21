@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 const Exercise = require('../models/exercises');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const User = require('../models/users');
+var passport = require("passport");
 
-router.get('/', function(req, res, next) {
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 	const filter = {};
 	var json = {};
 	Exercise.find(filter, function(err, exercises) {
