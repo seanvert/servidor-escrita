@@ -5,7 +5,8 @@ const User = require('../models/users');
 const exerciseSchema = new Schema({
 	name: String, 
 	contents: String,
-	creation_date: { type: Date, default: Date.now },
+	type: Number,
+	creationDate: { type: Date, default: Date.now },
 	creator: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
