@@ -3,6 +3,7 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 const User = require("../models/users");
 const Exercise = require('../models/exercises');
+const isLoggedIn = require('../middleware/isLoggedIn');
 var router = express.Router();
 
 passport.use(new LocalStrategy(User.authenticate()));
@@ -25,7 +26,6 @@ router.post(
 		failureMessage: true,
 	}),
 	function (req, res, next) {
-		console.log(req.user);
 		req.login(req.user, err =>
 			{
 				if (!err) {
@@ -44,7 +44,7 @@ router.get("/", (req, res, next) => {
 	console.log(req.session);
 });
 
-router.get("/logout", (req, res, next) => {
+router.get("/logout", isLoggedIn, (req, res, next) => {
 	// req.session.destroy();
 	req.logout((err) => {
 		if (!err) {
@@ -84,6 +84,11 @@ router.post("/signup", (req, res) => {
 	newUser.configs = defaultConfigs;
 	User.register(newUser, req.body.password, (err, user) => {
 		if (!err) {
+			// passport.authenticate('local',
+			// 					  { failureRedirect: '/login',
+			// 						failureMessage: true }),
+			// function(req, res) {
+			// 	res.redirect(process.env.URL_HOME);
 			// saves user
 			passport.authenticate("local")(req, res, () => {
 				res.redirect(process.env.URL_HOME);
