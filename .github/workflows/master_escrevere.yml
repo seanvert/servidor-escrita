@@ -55,7 +55,7 @@ jobs:
       - name: Login via Az module
         uses: azure/login@v1
         with:
-          creds: ${{secrets.AZURE_CREDENTIALS}}
+          creds: ${{secrets.AzureAppService_PublishProfile_d58b5ab47c9444d5b12ca1fb5ea984e5}}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
