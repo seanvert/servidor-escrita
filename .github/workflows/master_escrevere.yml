@@ -52,16 +52,11 @@ jobs:
       - name: unzip artifact for deployment
         run: unzip release.zip
 
-      - name: Login via Az module
-        uses: azure/login@v1
-        with:
-          creds: ${{secrets.AzureAppService_PublishProfile_d58b5ab47c9444d5b12ca1fb5ea984e5}}
-
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'escrevere'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_d58b5ab47c9444d5b12ca1fb5ea984e5 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_f1a63fe30a054444bc3b6f0e86c8f0fa }}
           package: .
