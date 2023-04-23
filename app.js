@@ -45,7 +45,6 @@ const serverStatus = () => {
 };
 
 const app = express();
-const port = 8000;
 
 app.use(cors({
     origin: ["http://192.168.0.100:3000", "http://192.168.0.101:3000"],
