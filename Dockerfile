@@ -11,6 +11,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install --production
 
-COPY . .
+# this can be uncommented to run locally if there is no internet connection or gh is unavailable
+# COPY . .
 
 CMD ["yarn", "start"]
