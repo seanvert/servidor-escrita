@@ -5,6 +5,8 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
+RUN git clone https://github.com/seanvert/servidor-escrita.git /app
+
 COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install --production
