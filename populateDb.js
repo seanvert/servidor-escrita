@@ -23,6 +23,9 @@ async function createAuthor() {
 	});
 };
 
+// TODO: Definir os dados que vao entrar de cada exercício
+// colocar os enunciados num vetor
+
 function createExercise(user, index) {
 	const newExercise = {
 		name: faker.lorem.sentence(),
@@ -43,26 +46,8 @@ function createExercise(user, index) {
 	});
 };
 
-function createExerciseTemplate(exerciseTemplate) {
-	// TODO parei aqui
-	const newExercise = {
-		name: faker.lorem.sentence(),
-		contents: exerciseTemplate.contents,
-		type: exerciseTemplate.type,
-		creator: "1",
-		defaultConfigs: exerciseTemplate.defaultConfigs
-	}
-	const exercise = Exercise.create(newExercise, function(err, next) {
-		if (!err) {
-			return exercise;
-		} else {
-			console.log(err);
-		}
-	});
-}
-
-
-
+// “Writing is a form of therapy; sometimes I wonder how all those who do not write, compose, or paint can manage to escape the madness, melancholia, the panic and fear which is inherent in a human situation.”
+// ― Graham Greene, Ways of Escape
 
 function createQuote(author, work) {
 	const newQuote = {
