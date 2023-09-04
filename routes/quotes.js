@@ -22,10 +22,8 @@ router.get('/new', (req, res, next) => {
 	res.send('rota new formulário criar');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', isLoggedIn, (req, res, next) => {
 	console.log(req.body);
-	// TODO: checa se o usuário existe
-	// TODO: redirecionar para outra página
 	res.send("rota post nova quote");
 });
 
