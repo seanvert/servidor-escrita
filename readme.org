@@ -13,9 +13,16 @@
 * antes do deploy
 ** trocar o segredo da sessão
 ** trocar o user e pass do mongoose
+* schemas
+** montar um schema para novas funcionalidades
+olhar o NewFeatures lá no front end
 * mvp
+** passport
+*** google routes
+*** discord routes
 ** routes quotes
 *** povoar a api
+**** consertar o nome dos exercícios na função povoar API, montar uma lista com os nomes corretos tirados do livro
 **** consertar o bug das quotes estarem sem source (author/work)
 ** definir a lógica dos exercícios
 *** escrita automática
