@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+// TODO: https://expressjs.com/en/advanced/best-practice-security.html#use-cookies-securely
+// tirar o expreess-session e usar o cookie-session no lugar
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
