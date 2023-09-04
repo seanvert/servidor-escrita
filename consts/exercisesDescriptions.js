@@ -1,7 +1,5 @@
 // exercises templates
-// TODO ver se esse negócio vai ficar o padrão mesmo,
-// ou se seria uma boa ideia ter vários conjuntos e exercícios padrão
-// com "linhas" diferentes ou o que seja
+
 var exercisesTemplates = [
 	{
 		name: 'Escrita Automática',

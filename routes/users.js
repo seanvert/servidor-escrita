@@ -19,8 +19,6 @@ passport.deserializeUser(User.deserializeUser());
 
 // router.post('/', (req, res, next) => {
 // 	console.log(req.body);
-// 	// TODO: checa se o usuário existe
-// 	// TODO: redirecionar para outra página
 // 	res.send("rota post novo usuário");
 // });
 
@@ -41,8 +39,9 @@ router.put('/:id', isLoggedIn, (req, res, next) => {
 	res.json(newUser);
 });
 
-// router.delete('/:id', (req, res, next) => {
-// 	res.send('rota delete dos usuários');
-// });
+// TODO: implementar o delete na DB
+router.delete('/:id', (req, res, next) => {
+ 	res.send('rota delete dos usuários');
+});
 
 module.exports = router;

@@ -38,19 +38,12 @@ router.post('/', isLoggedIn, (req, res, next) => {
 			console.log(err);
 		}
 	});
-	// TODO: checa se o usuário existe
-	// TODO: redirecionar para outra página
-
 });
 
 router.get('/:id', isLoggedIn, (req, res, next) => {
-	// TODO montar tipos de exercício e colocar eles em funções
 	var exerciseDescription = {};
 	Exercise.findById(req.params.id, function(err, exercise) {
 		exerciseDescription.response = exerciseMaker(exercise);
-		console.log(exerciseDescription);
-		// TODO aqui vai um switch case pra definir a lógica dos exercícios
-		// TODO: montar uma função que pega um exercício e dá uma descrição
 		res.json(exerciseDescription);
 	});
 

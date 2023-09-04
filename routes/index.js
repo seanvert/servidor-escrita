@@ -5,8 +5,8 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-	// console.log(req);
 	// TODO: healthcheck da api
+	// ver umas coisas para mandar num json
 	res.send('index');
 });
 

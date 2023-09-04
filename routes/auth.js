@@ -12,7 +12,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 const myLogger = function (req, res, next) {
-	// console.log(res);
+	// TODO: implementar ou adicionar um logger de alguma biblioteca
 	next();
 };
 
@@ -50,8 +50,6 @@ router.get("/logout", isLoggedIn, (req, res, next) => {
 		if (!err) {
 			res.clearCookie('connection.sid', { path: '/'})
 				.status(200).redirect(process.env.URL_HOME);
-			// TODO: destruir session cookies
-			// res
 		} else {
 			console.log(err);
 		}
@@ -84,12 +82,6 @@ router.post("/signup", (req, res) => {
 	newUser.configs = defaultConfigs;
 	User.register(newUser, req.body.password, (err, user) => {
 		if (!err) {
-			// passport.authenticate('local',
-			// 					  { failureRedirect: '/login',
-			// 						failureMessage: true }),
-			// function(req, res) {
-			// 	res.redirect(process.env.URL_HOME);
-			// saves user
 			passport.authenticate("local")(req, res, () => {
 				res.redirect(process.env.URL_HOME);
 			});
