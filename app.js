@@ -14,7 +14,7 @@ var textsRouter = require('./routes/texts');
 var authRouter = require('./routes/auth');
 var exercisesRouter = require('./routes/exercises');
 var quotesRouter = require('./routes/quotes');
-
+var morgan = require('morgan');
 
 const options = {
 	user: "root",
@@ -35,10 +35,11 @@ async function dbConnect() {
 }
 dbConnect();
 
-// if (true) {
-// 	populateDb();
-// }
+//if (true) {
+//	populateDb();
+//}
 
+// route do healthcheck da api
 const serverStatus = () => {
 	return {
 		state: 'up',
@@ -47,6 +48,7 @@ const serverStatus = () => {
 };
 
 const app = express();
+app.use(morgan('tiny'))
 
 app.use(cors({
     origin: ["http://192.168.0.100:3000", "http://192.168.0.101:3000"],
