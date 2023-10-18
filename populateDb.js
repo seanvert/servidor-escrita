@@ -26,9 +26,9 @@ async function createAuthor() {
 // TODO: Definir os dados que vao entrar de cada exercício
 // colocar os enunciados num vetor
 
-function createExercise(user, index) {
+function createExercise(name, user, index) {
 	const newExercise = {
-		name: faker.lorem.sentence(),
+		name: name,
 		contents: faker.lorem.paragraphs(),
 		type: index,
 		creator: user._id,
@@ -123,6 +123,19 @@ const quotes = [
 */
 ]
 
+const ExerciseNames = [
+  "Escrita Automática",
+  "Associação Livre",
+  "Fluxo Verbal",
+  "Criação de textos a partir de palavras geradoras",
+  "Criação de textos a partir de suas palavras",
+  "Criação a partir das palavras do outro",
+  faker.lorem.sentence(),
+  faker.lorem.sentence(),
+  faker.lorem.sentence(),
+  faker.lorem.sentence(),
+  faker.lorem.sentence()
+]
 
 function populateDb() {
 
@@ -134,7 +147,7 @@ function populateDb() {
 			createTexts(user);
 		}
 		// create exercises
-		createExercise(user, n_users);
+		createExercise(ExerciseNames[n_users], user, n_users);
 	};
 
 	for (var n_authors = 0; n_authors < 100; n_authors++) {
