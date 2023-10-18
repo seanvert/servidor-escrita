@@ -45,23 +45,23 @@ function exerciseMaker (exercise) {
 		}
 	case 'Associação Livre':
 		return {
-			description: "" + associacaoLivre
+			description: "" + associacaoLivre()
 		}
 	case 'Fluxo Verbal':
 		return {
-			description: "" + fluxoVerbal
+			description: "" + fluxoVerbal()
 		}
 	case 'Criação de textos a partir de palavras geradoras':
 		return {
-			description: "" + palavrasGeradoras
+			description: "" + palavrasGeradoras()
 		}
 	case 'Criação de textos a partir de suas palavras':
 		return {
-			description: "" + suasPalavras
+			description: "" + suasPalavras()
 		}
 	case 'Criação a partir das palavras do outro':
 		return {
-			description: "" + palavrasDoOoutro
+			description: "" + palavrasDoOoutro()
 		}
 	default:
 		return({
