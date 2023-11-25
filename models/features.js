@@ -1,13 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const { Schema } = mongoose;
-
-const Feature = new Schema({
-	name: String,
-	author: {
-			type: Schema.Types.ObjectId,
-			ref: 'User'
-		},
-	description: String
+export const Feature = new Schema({
+    name: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    description: String
 });
-
 module.exports = mongoose.model('Feature', Feature);

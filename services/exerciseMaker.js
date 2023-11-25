@@ -1,33 +1,33 @@
 // TODO: definir a especificação do objeto exercício que vou retornar
 // precisa de um enunciado
 
-function associacaoLivre () {
-	return "associacao livre"
+function associacaoLivre() {
+  return 'associacao livre';
 }
 
-function fluxoVerbal () {
-	return "fluxo Verbal"
+function fluxoVerbal() {
+  return 'fluxo Verbal';
 }
 
-function palavrasGeradoras () {
-	return "Palavras geradoras"
+function palavrasGeradoras() {
+  return 'Palavras geradoras';
 }
 
-function suasPalavras () {
-	return "suas palavras"
+function suasPalavras() {
+  return 'suas palavras';
 }
 
-function palavrasDoOoutro () {
-	return "palavras do outro"
+function palavrasDoOoutro() {
+  return 'palavras do outro';
 }
 
-function exerciseMaker (exercise) {
-	// gets an exercise object
-	// returns an exercise description
-	switch (exercise.name) {
-	case 'Escrita Automática':
-		return {
-			description: `A escrita automática é uma das mais fortes experiências de liberação,
+function exerciseMaker(exercise) {
+  // gets an exercise object
+  // returns an exercise description
+  switch (exercise.name) {
+    case 'Escrita Automática':
+      return {
+        description: `A escrita automática é uma das mais fortes experiências de liberação,
 			 mexendo praticamente com todas as estruturas da nossa linguagem. Muitos bloqueios 
 			 que impedem a nossa escrita livre e criadora, o nosso escrever solto e espontâneo,
 			  são quebrados de cada vez. Este exercício, que também foi um dos métodos da psicanálise
@@ -41,35 +41,33 @@ function exerciseMaker (exercise) {
 				 papel (por exemplo: “e agora?” “estou bloqueado!”, “o que faço?”, “acabou a inspiração!”, 
 					“quero parar!” etc.). Leve a experiência até o fim (se for preciso, enfrente o medo). 
 					Depois faça o que você quiser: ler, rasgar, guardar. Como você se sentir melhor. 
-					O importante para nós é o processo da escrita sem censura de nenhum tipo.`
-		}
-	case 'Associação Livre':
-		return {
-			description: "" + associacaoLivre()
-		}
-	case 'Fluxo Verbal':
-		return {
-			description: "" + fluxoVerbal()
-		}
-	case 'Criação de textos a partir de palavras geradoras':
-		return {
-			description: "" + palavrasGeradoras()
-		}
-	case 'Criação de textos a partir de suas palavras':
-		return {
-			description: "" + suasPalavras()
-		}
-	case 'Criação a partir das palavras do outro':
-		return {
-			description: "" + palavrasDoOoutro()
-		}
-	default:
-		return({
-			description: "vou colocar alguma coisa aqui" + exercise.name,
-		});
-
-	}
-	
+					O importante para nós é o processo da escrita sem censura de nenhum tipo.`,
+      };
+    case 'Associação Livre':
+      return {
+        description: `${associacaoLivre()}`,
+      };
+    case 'Fluxo Verbal':
+      return {
+        description: `${fluxoVerbal()}`,
+      };
+    case 'Criação de textos a partir de palavras geradoras':
+      return {
+        description: `${palavrasGeradoras()}`,
+      };
+    case 'Criação de textos a partir de suas palavras':
+      return {
+        description: `${suasPalavras()}`,
+      };
+    case 'Criação a partir das palavras do outro':
+      return {
+        description: `${palavrasDoOoutro()}`,
+      };
+    default:
+      return ({
+        description: `vou colocar alguma coisa aqui${exercise.name}`,
+      });
+  }
 }
 
 module.exports = exerciseMaker;
